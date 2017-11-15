@@ -11,6 +11,7 @@ describe('ConfigParser object', function(){
             'section2',
             'USER',
             'im running out of ideas',
+            'permissive.section.name',
             'interpolation',
             'more_complex_interpolation'
         ]);
@@ -19,6 +20,7 @@ describe('ConfigParser object', function(){
     it('should indicate if a section is present in a config file', function(){
         expect(config.hasSection('section1')).to.equal(true);
         expect(config.hasSection('section4')).to.equal(false);
+        expect(config.hasSection('permissive.section.name')).to.equal(true);
     });
 
     it('should add a new section', function(){
@@ -31,6 +33,7 @@ describe('ConfigParser object', function(){
         expect(config.keys('section2')).to.deep.equal(['value', 'key', 'woah', 'this']);
         expect(config.keys('USER')).to.deep.equal(['username', 'password']);
         expect(config.keys('im running out of ideas')).to.deep.equal(['anotherthing', 'otherthing']);
+        expect(config.keys('permissive.section.name')).to.deep.equal(['some.option', 'other option']);
     });
 
     it('should indicate if a section has a key', function(){
